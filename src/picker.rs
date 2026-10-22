@@ -126,8 +126,8 @@ pub fn run() -> Result<()> {
                                     catalog.fingerprint,
                                     None,
                                 ) {
-                                    Ok(()) => return finish_selection(guard),
-                                    Err(error) => message = error.to_string(),
+                                    Ok(()) => return finish_selection(guard, Ok(())),
+                                    Err(error) => return finish_selection(guard, Err(error)),
                                 }
                             }
                         }
@@ -156,8 +156,8 @@ pub fn run() -> Result<()> {
                                     catalog.fingerprint,
                                     Some(&file),
                                 ) {
-                                    Ok(()) => return finish_selection(guard),
-                                    Err(error) => message = error.to_string(),
+                                    Ok(()) => return finish_selection(guard, Ok(())),
+                                    Err(error) => return finish_selection(guard, Err(error)),
                                 }
                             }
                             Err(error) => message = error.to_string(),
@@ -182,10 +182,10 @@ pub fn run() -> Result<()> {
     }
 }
 
-fn finish_selection(guard: TerminalGuard) -> Result<()> {
+fn finish_selection(guard: TerminalGuard, result: Result<()>) -> Result<()> {
     drop(guard);
     herdr::close_picker_popup()?;
-    Ok(())
+    result
 }
 
 fn resolve_file(root: &Path, input: &str) -> Result<PathBuf> {

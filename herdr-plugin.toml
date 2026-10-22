@@ -1,6 +1,6 @@
 id = "local.zed-tasks"
 name = "Zed Tasks"
-version = "0.2.0"
+version = "0.2.1"
 min_herdr_version = "0.9.0"
 description = "Pick project-local Zed tasks and run them in the current Herdr terminal"
 platforms = ["macos", "linux"]
@@ -21,4 +21,3 @@ placement = "popup"
 width = "80%"
 height = 20
 command = ["target/release/herdr-zed-tasks", "picker"]
-
