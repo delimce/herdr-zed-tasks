@@ -2,6 +2,12 @@
 
 Pick a task from the active project's `.zed/tasks.json` and run it in the terminal pane that was focused when the picker opened. The task list is read again whenever the picker opens. Search matches words anywhere in each task's `label`, without regard to letter case.
 
+## Preview
+
+The picker filters project tasks by label and runs the highlighted task in the original terminal pane.
+
+![Zed Tasks picker showing searchable project tasks in a Herdr terminal pane](images/screenshot-01.png)
+
 ## Requirements
 
 - Herdr 0.9 or newer on macOS or Linux
@@ -13,6 +19,13 @@ Pick a task from the active project's `.zed/tasks.json` and run it in the termin
 ```sh
 cargo build --release --locked
 herdr plugin link /path/to/herdr-zed-tasks
+herdr plugin action list --plugin local.zed-tasks
+```
+
+## Install from GitHub
+
+```sh
+herdr plugin install delimce/herdr-zed-tasks
 herdr plugin action list --plugin local.zed-tasks
 ```
 
